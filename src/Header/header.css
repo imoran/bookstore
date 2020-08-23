@@ -1,3 +1,11 @@
+a {
+    color: white;
+}
+
+a:hover {
+    color: lightgray;
+}
+
 .menu-items {
     display: flex;
     justify-content: space-around;
@@ -7,8 +15,4 @@
 
 .menu-items li {
     cursor: pointer;
-}
-
-.menu-items li:hover {
-    color: lightgray;
 }

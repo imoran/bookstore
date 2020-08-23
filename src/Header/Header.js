@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <StyledHeader>
             <StyledUl>
-                <div class="menu-items">
+                <div className="menu-items">
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/about-us">About Us</NavLink></li>
                 </div>
@@ -30,5 +30,6 @@ const StyledUl = styled.ul`
     background: salmon;
     margin-top: 0;
 `;
+
 
 export default Header;
