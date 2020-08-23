@@ -1,5 +1,7 @@
 import React from 'react';
+import Book from '../Books/Book';
 import axios from 'axios';
+import styled from 'styled-components';
 
 export class Home extends React.Component {
     constructor(props) {
@@ -21,18 +23,22 @@ export class Home extends React.Component {
 
     render() { 
         return this.state.books ? (
-            <div>
-                {this.state.books.map((book, index) => {
-                    return (<div key={index}>{book.volumeInfo.title}</div>);
+            <BooksContainer>
+                {this.state.books.map((book) => {
+                    return (
+                        <Book key={book.id} props={book}/>
+                    );
                 })}
-            </div>
+            </BooksContainer>
         ) : "";
     }
 }
 
+const BooksContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 170px 0 170px;
+`;
+
 
 export default Home;
-
-// {this.state.books.map((item) => {
-//     <div>{item}</div>
-// })}
