@@ -5,6 +5,7 @@ import Header from './Header/Header';
 import Home from './Home/Home';
 import About from './About/About'
 import NotFound from './NotFound/NotFound';
+import BookDetails from './Books/BookDetails';
 
 class App extends React.Component {
     render() {
@@ -13,6 +14,7 @@ class App extends React.Component {
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/books/:id" component={BookDetails} />
                     <Route path="/about-us" component={About} />
                     <Route default component={NotFound} />
                 </Switch>

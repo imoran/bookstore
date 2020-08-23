@@ -9,7 +9,7 @@ a:hover {
 .menu-items {
     display: flex;
     justify-content: space-around;
-    width: 30%;
+    width: 200px;
     padding: 10px;
 }
 
