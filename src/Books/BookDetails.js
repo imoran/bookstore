@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import './book.css';
 
 
 export class BookDetails extends Component {
@@ -21,7 +20,9 @@ export class BookDetails extends Component {
     }
 
     getAuthors() {
-        return this.state.bookData ? this.state.bookData.volumeInfo.authors.map((author) => author).join(", ") : "";
+        return this.state.bookData ? 
+            this.state.bookData.volumeInfo.authors.map((author) => author).join(", ") 
+            : "";
     }
 
 
@@ -30,7 +31,7 @@ export class BookDetails extends Component {
         const authors = this.getAuthors();
         return this.state.bookData ? (
             <>
-                <h1 className="book-title">{title}</h1>
+                <BookTitle>{title}</BookTitle>
                 <BookDetailContainer>
                     <div>
                         <img src={this.state.bookData.volumeInfo.imageLinks.small}/>
@@ -46,6 +47,11 @@ export class BookDetails extends Component {
     }
 }
 
+const BookTitle = styled.h1`
+    padding-left: 170px;
+    margin-bottom: 24px;
+`;
+
 const BookDetailContainer = styled.div`
     display: flex;
     padding: 0px 170px 0 170px;
@@ -54,5 +60,6 @@ const BookDetailContainer = styled.div`
 const BookDetailColumn = styled.div`
     padding: 50px;
 `;
+
 
 export default BookDetails;

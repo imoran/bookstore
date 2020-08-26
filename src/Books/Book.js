@@ -13,7 +13,7 @@ const Book = (book) => {
 }
 
 const BookContainer = styled.div`
-    padding: 80px;
+    padding: 30px;
     text-align: center;   
 `;
 
