@@ -6,6 +6,12 @@ import Home from './Home/Home';
 import About from './About/About'
 import NotFound from './NotFound/NotFound';
 import BookDetails from './Books/BookDetails';
+import rootReducer from './rootReducer';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 class App extends React.Component {
     render() {
@@ -24,6 +30,11 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.querySelector('#root')
 );
+
+// what's this?
+// registerServiceWorker();
