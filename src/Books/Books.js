@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import Book from '../Books/Book';
-import axios from 'axios';
+import { fetchBookDetails } from './BookActions';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 export class Books extends Component {
     constructor(props) {
         super(props);
-        this.state = { books: null };
+        this.state = { books: null }
     }
 
     componentDidMount() {
-        const API_KEY = process.env.REACT_APP_BOOKS_API_KEY;
-
-        axios.get(
-            `https://www.googleapis.com/books/v1/volumes?q=search-terms&key=${API_KEY}`
-        ).then(({ data }) => {
+        this.props.fetchBookDetails().then((data) => {
             this.setState({ books: data.items })
         });
     }
@@ -38,4 +35,12 @@ const BooksContainer = styled.div`
     padding: 0px 170px 0 170px;
 `;
 
-export default Books;
+const mapStateToProps = (state) => ({
+    books: state.data
+  });
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchBookDetails: (data) => dispatch(fetchBookDetails(data))
+  });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Books);
