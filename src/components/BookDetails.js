@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
 
-export class BookDetails extends Component {
+export class BookDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = { bookData: null }

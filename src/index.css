@@ -1,1 +1,20 @@
 @import-normalize;
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: lightgray;
+}
+
+.menu-items {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+    padding: 10px;
+}
+
+.menu-items li {
+    cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Book from '../Books/Book';
-import { fetchBookDetails } from './BookActions';
+import Book from './Book';
+import { fetchBookDetails } from '../actions/BookActions';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
