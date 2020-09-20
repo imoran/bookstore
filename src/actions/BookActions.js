@@ -15,8 +15,8 @@ export const fetchBookDetails = () => {
         return axios.get(`
             https://www.googleapis.com/books/v1/volumes?q=search-terms&key=${API_KEY}`
         ).then(({ data }) => {
-            dispatch(fetchBooksSuccess(data));
-            return data;
+            dispatch(fetchBooksSuccess(data.items));
+            return data.items;
         })
         .catch((err) => {
             console.log("err", err)

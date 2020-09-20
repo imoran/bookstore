@@ -1,45 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import { connect } from 'react-redux';
 
 
 export class BookDetails extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { bookData: null }
+        this.state = { book: null };
     }
-    
+
     componentDidMount() {
-        const id  = this.props.match.params.id;
-
-        axios.get(
-            `https://www.googleapis.com/books/v1/volumes/${id}`
-        ).then(({ data }) => {
-            this.setState({ bookData: data })
-        });
+        this.getBook();
     }
 
-    getAuthors() {
-        return this.state.bookData ? 
-            this.state.bookData.volumeInfo.authors.map((author) => author).join(", ") 
-            : "";
+    getBook() {
+        const books = this.props.books[0];
+        let book;
+
+        if (books) {
+            book = books.filter((book) => {
+                if (book.id === this.props.match.params.id) {
+                    return book;
+                }
+            });
+            this.setState({ book });
+        }
     }
 
+    // return books ? books.map((book) => book.volumeInfo.authors.join(', ')) : "";
 
     render() {
-        const { title, subtitle, description } = this.state.bookData ? this.state.bookData.volumeInfo : '';
-        const authors = this.getAuthors();
-        return this.state.bookData ? (
+        const book = this.state.book;
+        return book ? (
             <>
-                <BookTitle>{title}</BookTitle>
+                <BookTitle>{book[0].volumeInfo.title}</BookTitle>
                 <BookDetailContainer>
                     <div>
-                        <img src={this.state.bookData.volumeInfo.imageLinks.small}/>
+                        <img src={book[0].volumeInfo.imageLinks.thumbnail} />
                     </div>
                     <BookDetailColumn>
-                        <h2>{subtitle}</h2>
-                        <p>{authors}</p>
-                        <p>{description}</p>
+                        <p>{book[0].volumeInfo.authors.join(', ')}</p>
+                        <p>{book[0].volumeInfo.description}</p>
                     </BookDetailColumn>
                 </BookDetailContainer>
             </>
@@ -61,5 +62,8 @@ const BookDetailColumn = styled.div`
     padding: 50px;
 `;
 
+const mapStateToProps = (state) => {
+    return state;
+}
 
-export default BookDetails;
+export default connect(mapStateToProps)(BookDetails);

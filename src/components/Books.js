@@ -12,7 +12,7 @@ export class Books extends Component {
 
     componentDidMount() {
         this.props.fetchBookDetails().then((data) => {
-            this.setState({ books: data.items })
+            this.setState({ books: data })
         });
     }
 
@@ -35,12 +35,12 @@ const BooksContainer = styled.div`
     padding: 0px 170px 0 170px;
 `;
 
-const mapStateToProps = (state) => ({
-    books: state.data
-  });
+const mapStateToProps = (state) => {
+    return state;
+}
 
 const mapDispatchToProps = (dispatch) => ({
     fetchBookDetails: (data) => dispatch(fetchBookDetails(data))
-  });
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Books);
