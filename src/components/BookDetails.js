@@ -26,9 +26,7 @@ export class BookDetails extends React.Component {
             this.setState({ book });
         }
     }
-
-    // return books ? books.map((book) => book.volumeInfo.authors.join(', ')) : "";
-
+    
     render() {
         const book = this.state.book;
         return book ? (
